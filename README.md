@@ -7,6 +7,7 @@
 
 ```zsh
 conda install gym[all]
+conda install torch
 ```
 
 ## 运行
