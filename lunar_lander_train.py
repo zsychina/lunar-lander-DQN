@@ -8,14 +8,14 @@ import random
 from helper import ReplayMemory, Transition
 from DQN import DQN
 
-BATCH_SIZE = 32
+BATCH_SIZE = 128
 GAMMA = 0.99
 EPS_START = 0.9
 EPS_END = 0.05
 EPS_DECAY = 1000
 TAU = 0.005
 LR = 1e-4
-episode_num = 1000
+episode_num = 5000
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 env = gym.make("LunarLander-v2")
@@ -45,7 +45,7 @@ def select_action(state):
 
 
 def optimize_model():
-    if len(memory) < 100:
+    if len(memory) < 200:
         return
     transitions = memory.sample(BATCH_SIZE)
     batch = Transition(*zip(*transitions))
